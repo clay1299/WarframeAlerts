@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="Nav_Void_Fissures">Void fissures</sys:String>
+    <sys:String x:Key="Nav_Settings">settings</sys:String>
+    <sys:String x:Key="Normal_Way">Normal path</sys:String>
+    <sys:String x:Key="Steel_Way">Steel path</sys:String>
+    <sys:String x:Key="Loading">Loading...</sys:String>
+    <sys:String x:Key="Language">Language</sys:String>
+    <sys:String x:Key="Save">Save</sys:String>
+    <sys:String x:Key="Saved">Saved!</sys:String>
+    <sys:String x:Key="Notifications">Notifications</sys:String>
+    <sys:String x:Key="Any">Any</sys:String>
+    <sys:String x:Key="Way">Path:</sys:String>
+    <sys:String x:Key="MissionType">MissionType:</sys:String>
+    <sys:String x:Key="Relic">Relic level:</sys:String>
+    <sys:String x:Key="InfinitiNotifications">Notifications don't disappear</sys:String>
+    <sys:String x:Key="Open">Open</sys:String>
+    <sys:String x:Key="Exit">Exit</sys:String>
+
+</ResourceDictionary>

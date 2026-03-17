@@ -1,0 +1,75 @@
+﻿<mah:MetroWindow x:Class="View.WarframeAlerts.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:View.WarframeAlerts"
+                 xmlns:tb="clr-namespace:H.NotifyIcon;assembly=H.NotifyIcon.Wpf"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 mc:Ignorable="d"
+                 WindowTitleBrush="{StaticResource PrimaryGoldBrush}"
+                 NonActiveWindowTitleBrush="{StaticResource BackroundBrush}"
+                 Title="Warframe Alerts"
+                 Height="650" Width="1200">
+    <Window.Resources>
+        <ContextMenu x:Key="TrayMenu">
+            <MenuItem Command="{Binding OpenCommand}">
+                <MenuItem.Header>
+                    <TextBlock Text="{DynamicResource Open}" Foreground="Black" />
+                </MenuItem.Header>
+            </MenuItem>
+
+            <MenuItem Command="{Binding ExitCommand}">
+                <MenuItem.Header>
+                    <TextBlock Text="{DynamicResource Exit}" Foreground="Black" />
+                </MenuItem.Header>
+            </MenuItem>
+        </ContextMenu>
+    </Window.Resources>
+    <Grid Background="{StaticResource BackroundBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <tb:TaskbarIcon
+            ToolTipText="WarframeAlerts"
+            IconSource="pack://application:,,,/Resources/Image/icon.ico"
+            MenuActivation="RightClick"
+            LeftClickCommand="{Binding OpenCommand}"
+            ContextMenu="{StaticResource TrayMenu}"
+            />
+        <Grid Margin="0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <RadioButton Style="{DynamicResource NavigateButton}"
+                 IsChecked="True" Command="{Binding NavVoidFissuresCommand}">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10,5">
+                        <Image Source="/Resources/Image/void_fissures.png" 
+                               Height="24" Margin="0,0,3,0"/>
+                        <TextBlock Text="{StaticResource Nav_Void_Fissures}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+
+            </StackPanel>
+            <RadioButton Style="{DynamicResource NavigateButton}" Grid.Row="1"
+                         Command="{Binding NavSettingsCommand}">
+                <StackPanel Orientation="Horizontal"
+                            Margin="10,5">
+                    <Image Source="/Resources/Image/settings.png" 
+                           Height="24" Margin="0,0,3,0"/>
+                    <TextBlock Text="Настройки" VerticalAlignment="Center"/>
+                </StackPanel>
+            </RadioButton>
+        </Grid>
+
+        <Border Grid.Column="1" CornerRadius="10" Margin="10"
+                Background="{StaticResource SecondaryBackroundBrush}">
+            <Frame Content="{Binding ActivePage}"
+                   NavigationUIVisibility="Hidden"/>
+        </Border>
+    </Grid>
+</mah:MetroWindow>

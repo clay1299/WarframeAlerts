@@ -1,0 +1,150 @@
+﻿<Page x:Class="WarframeAlerts.View.Pages.VoidFissuresPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WarframeAlerts.View.Pages"
+      xmlns:uc="clr-namespace:WarframeAlerts.View.UserControls"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="VoidFissuresPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Style="{DynamicResource BgButton}"
+                                 Command="{Binding NormalWayCommand}"
+                                 GroupName="Way"
+                                 Padding="10"
+                                 IsChecked="True">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Resources/Image/normal_path.png"
+                                   Height="25"
+                                   VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Normal_Way}"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Grid.Column="1" Style="{DynamicResource BgButton}"
+                                 Command="{Binding SteelWayCommand}"
+                                 GroupName="Way"
+                                 Padding="0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Resources/Image/steel_path.png"
+                                   Height="25"
+                                   VerticalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Steel_Way}"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </RadioButton>
+                </Grid>
+            </Border>
+
+            <ItemsControl Grid.Row="1"
+                          ItemsSource="{Binding SortedRelic}"
+                          Style="{DynamicResource RelicListBox}" Cursor="Hand">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{DynamicResource SecondaryBackroundBrush}" 
+                                Margin="10,5" 
+                                CornerRadius="10"
+                                Padding="8,5">
+                            <uc:RelicCell Planet="{Binding MissionName.Planet}"
+                                          MissionType="{Binding MissionType}"
+                                          RelicType="{Binding Relic}"
+                                          ExpiryTime="{Binding Expiry}"/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        <Border Grid.Column="1" Margin="10"
+                Background="{DynamicResource BackroundBrush}"
+                CornerRadius="10">
+            <Grid Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{DynamicResource Notifications}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="19"
+                           FontWeight="Bold"/>
+
+                <StackPanel Grid.Row="1">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Margin" Value="3,10,0,5"/>
+                            <Setter Property="FontFamily" Value="{DynamicResource Onest}"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="{DynamicResource MissionType}"/>
+                    <ComboBox Style="{DynamicResource BaseComboBox}"
+                              ItemsSource="{Binding MissionTypeSource}"
+                              SelectedItem="{Binding MissionTypeSelected}"
+                              SelectedIndex="{Binding MissionTypeSelectedIndex}"/>
+                    <TextBlock Text="{DynamicResource Relic}"/>
+                    <ComboBox Style="{DynamicResource BaseComboBox}"
+                              ItemsSource="{Binding RelicSource}"
+                              SelectedItem="{Binding RelicSelected}"
+                              SelectedIndex="{Binding RelicSelectedIndex}"/>
+                    <TextBlock Text="{DynamicResource Way}"/>
+                    <RadioButton GroupName="NotifyWay"
+                                 Style="{DynamicResource GoldRadioButton}"
+                                 Content="{DynamicResource Any}"
+                                 IsChecked="{Binding IsNullChecked}"/>
+                    <RadioButton GroupName="NotifyWay"
+                                 Style="{DynamicResource GoldRadioButton}"
+                                 Content="{DynamicResource Normal_Way}"
+                                 IsChecked="{Binding IsFalseChecked}"
+                                 Margin="0,5"/>
+                    <RadioButton GroupName="NotifyWay"
+                                 Style="{DynamicResource GoldRadioButton}"
+                                 Content="{DynamicResource Steel_Way}"
+                                 IsChecked="{Binding IsTrueChecked}"/>
+                    <Button Content="Создать" 
+                            Padding="10"
+                            Style="{DynamicResource GoldButton}"
+                            HorizontalAlignment="Center"
+                            Margin="0,10"
+                            Command="{Binding CreateNotify}"/>
+                </StackPanel>
+                <ItemsControl Grid.Row="2" 
+                              ItemsSource="{Binding FissuresNotifications}"
+                              Style="{DynamicResource NotificationListBox}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{DynamicResource SecondaryBackroundBrush}" 
+                                    Margin="10,5" 
+                                    CornerRadius="10"
+                                    Padding="8,5">
+                                <uc:VoidFissuresNotificationCell MissionType="{Binding MissionType}"
+                                                                 Relic="{Binding Relic}"
+                                                                 IsHard="{Binding IsHard}"
+                                                                 IsActive="{Binding IsActive, Mode=TwoWay}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

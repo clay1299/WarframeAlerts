@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="WarframeAlerts.View.UserControls.RelicCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WarframeAlerts.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding RelicPath, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   Stretch="Uniform"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   MaxHeight="60"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="{Binding MissionType, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                           FontWeight="UltraBold"/>
+                <TextBlock Text="{Binding RelicType, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                           FontWeight="Bold"
+                           Margin="0,2"/>
+                <TextBlock Text="{Binding Planet, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1"
+                BorderThickness="0,3,0,0"
+                Margin="0,8,0,0"
+                BorderBrush="{DynamicResource BackroundBrush}">
+            <TextBlock Text="{Binding Time, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       HorizontalAlignment="Center"/>
+        </Border>
+
+    </Grid>
+</UserControl>

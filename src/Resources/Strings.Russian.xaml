@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="Nav_Void_Fissures">Разломы бездны</sys:String>
+    <sys:String x:Key="Nav_Settings">Настройки</sys:String>
+    <sys:String x:Key="Normal_Way">Обычный путь</sys:String>
+    <sys:String x:Key="Steel_Way">Стальной путь</sys:String>
+    <sys:String x:Key="Loading">Загрузка...</sys:String>
+    <sys:String x:Key="Language">Язык</sys:String>
+    <sys:String x:Key="Save">Сохранить</sys:String>
+    <sys:String x:Key="Saved">Сохранено!</sys:String>
+    <sys:String x:Key="Notifications">Уведомления</sys:String>
+    <sys:String x:Key="Any">Любой</sys:String>
+    <sys:String x:Key="Way">Путь:</sys:String>
+    <sys:String x:Key="MissionType">Тип миссии:</sys:String>
+    <sys:String x:Key="Relic">Уровень реликвии:</sys:String>
+    <sys:String x:Key="InfinitiNotifications">Уведомления не исчезают</sys:String>
+    <sys:String x:Key="Open">Открыть</sys:String>
+    <sys:String x:Key="Exit">Выход</sys:String>
+    
+</ResourceDictionary>

@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="Background">#101623</Color>
+    <Color x:Key="SecondaryBackground">#171e30</Color>
+    <Color x:Key="PrimaryGold">#b98549</Color>
+    <Color x:Key="GrayForeground">#a1a1a1</Color>
+    <Color x:Key="ScrollThumb">#b98549</Color>
+
+    <SolidColorBrush x:Key="BackroundBrush" Color="{StaticResource Background}"/>
+    <SolidColorBrush x:Key="SecondaryBackroundBrush" Color="{StaticResource SecondaryBackground}"/>
+    <SolidColorBrush x:Key="PrimaryGoldBrush" Color="{StaticResource PrimaryGold}"/>
+    <SolidColorBrush x:Key="GrayForegroundBrush" Color="{StaticResource GrayForeground}"/>
+    <SolidColorBrush x:Key="ScrollThumbBrush" Color="{StaticResource ScrollThumb}" />
+
+    <SolidColorBrush x:Key="AccentBrush" Color="#3D4B66"/>
+    <!-- Индиго для акцента -->
+    <SolidColorBrush x:Key="TextBrush" Color="#E2E8F0"/>
+    <SolidColorBrush x:Key="TextMutedBrush" Color="#94A3B8"/>
+</ResourceDictionary>

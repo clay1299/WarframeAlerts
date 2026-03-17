@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="WarframeAlerts.View.UserControls.VoidFissuresNotificationCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WarframeAlerts.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Style="{DynamicResource NotificationCheckBox}"
+                  IsChecked="{Binding IsActive, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                  Command="{Binding DataContext.ActiveNotificationCommand,  RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                  CommandParameter="{Binding}"/>
+        <StackPanel Grid.Column="1">
+            <Image Source="{Binding PathIcon, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   HorizontalAlignment="Center"
+                   Height="24"/>
+            <TextBlock Text="{Binding MissionType, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       Margin="0,4"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Relic, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+        <Button Grid.Column="2" 
+                Style="{DynamicResource BaseButton}"
+                Command="{Binding DataContext.DeleteFissureCommand, 
+                  RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                CommandParameter="{Binding}">
+            <Image Source="/Resources/Image/trash.png"
+                   Height="24"/>
+        </Button>
+    </Grid>
+</UserControl>
