@@ -8,6 +8,7 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  mc:Ignorable="d"
                  WindowTitleBrush="{StaticResource PrimaryGoldBrush}"
+                 BorderThickness="0"
                  NonActiveWindowTitleBrush="{StaticResource BackroundBrush}"
                  Title="Warframe Alerts"
                  Height="650" Width="1200">
