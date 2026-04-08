@@ -1,14 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WarframeAlerts.Service.Interface;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WarframeAlerts.View.UserControls
 {
     public partial class RelicCell : UserControl
     {
         private readonly IApiTranslator _translator;
+
+        CancellationTokenSource _cancelTokenSource;
 
         public string RelicPath
         {
@@ -104,6 +106,8 @@ namespace WarframeAlerts.View.UserControls
             InitializeComponent();
 
             _translator = App.ServiceProvider.GetRequiredService<IApiTranslator>();
+
+            Unloaded += (s, e) => StopTimer();
         }
 
         private static void RelicTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -113,7 +117,7 @@ namespace WarframeAlerts.View.UserControls
             if (e.NewValue is string relic && RelicToPath.TryGetValue(relic, out string path))
             {
                 control.RelicPath = path;
-                
+
                 control.RelicType = control._translator.RelicTranslate(relic);
             }
         }
@@ -131,7 +135,7 @@ namespace WarframeAlerts.View.UserControls
         private static void OnExpiryTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = (RelicCell)d;
-            if(e.NewValue is DateTime expiry)
+            if (e.NewValue is DateTime expiry)
             {
                 control.UpdateTime(expiry);
                 control.StartTimer(expiry);
@@ -140,11 +144,27 @@ namespace WarframeAlerts.View.UserControls
 
         private async void StartTimer(DateTime expiry)
         {
-            using var timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
-            while (await timer.WaitForNextTickAsync())
+            StopTimer();
+
+            _cancelTokenSource = new CancellationTokenSource();
+            var token = _cancelTokenSource.Token;
+
+            try
             {
-                UpdateTime(expiry);
+                using var timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+                while (await timer.WaitForNextTickAsync(token))
+                {
+                    UpdateTime(expiry);
+                }
             }
+            catch (OperationCanceledException) { }
+        }
+
+        private void StopTimer()
+        {
+            _cancelTokenSource?.Cancel();
+            _cancelTokenSource?.Dispose();
+            _cancelTokenSource = null;
         }
 
         private void UpdateTime(DateTime expiry)
@@ -160,7 +180,7 @@ namespace WarframeAlerts.View.UserControls
             {
                 result += "00:00:00";
             }
-            
+
             Time = result;
         }
     }

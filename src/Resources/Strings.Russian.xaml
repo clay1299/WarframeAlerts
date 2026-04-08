@@ -4,6 +4,7 @@
 
     <sys:String x:Key="Nav_Void_Fissures">Разломы бездны</sys:String>
     <sys:String x:Key="Nav_Settings">Настройки</sys:String>
+    <sys:String x:Key="Nav_Arbitrations">Арбитраж</sys:String>
     <sys:String x:Key="Normal_Way">Обычный путь</sys:String>
     <sys:String x:Key="Steel_Way">Стальной путь</sys:String>
     <sys:String x:Key="Loading">Загрузка...</sys:String>

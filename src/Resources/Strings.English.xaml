@@ -4,6 +4,7 @@
 
     <sys:String x:Key="Nav_Void_Fissures">Void fissures</sys:String>
     <sys:String x:Key="Nav_Settings">settings</sys:String>
+    <sys:String x:Key="Nav_Arbitrations">Arbitrations</sys:String>
     <sys:String x:Key="Normal_Way">Normal path</sys:String>
     <sys:String x:Key="Steel_Way">Steel path</sys:String>
     <sys:String x:Key="Loading">Loading...</sys:String>

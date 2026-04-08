@@ -54,7 +54,7 @@
                         <TextBlock Text="{StaticResource Nav_Void_Fissures}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
-
+                
             </StackPanel>
             <RadioButton Style="{DynamicResource NavigateButton}" Grid.Row="1"
                          Command="{Binding NavSettingsCommand}">

@@ -16,7 +16,7 @@ public class VoidFissuresPageViewModel : BaseViewModel
     private bool _isHard = false;
     private const int _updateInterval = 70;
 
-    private List<string> _relicSource; 
+    private List<string> _relicSource;
     private List<string> _missionTypeSource;
     private string _missionTypeSelected;
     private int _missionTypeSelectedIndex;
@@ -124,7 +124,7 @@ public class VoidFissuresPageViewModel : BaseViewModel
         SteelWayCommand = new RelayCommand(c => { _isHard = true; Refresh(); });
         CreateNotify = new RelayCommand(CreateNotification);
         DeleteFissureCommand = new RelayCommand<VoidFissuresNotification>(DeleteFissure);
-        ActiveNotificationCommand = new RelayCommand<VoidFissuresNotification>(x => _notificationService.SaveVoidFissuresNotification(x.IsActive, x) );
+        ActiveNotificationCommand = new RelayCommand<VoidFissuresNotification>(x => _notificationService.SaveVoidFissuresNotification(x.IsActive, x));
 
         Init();
     }
@@ -196,7 +196,7 @@ public class VoidFissuresPageViewModel : BaseViewModel
 
     private void CreateNotification(object obj)
     {
-        if(_notificationService.AddVoidFissuresNotification(new VoidFissuresNotification
+        if (_notificationService.AddVoidFissuresNotification(new VoidFissuresNotification
         {
             MissionSelectedIndex = MissionTypeSelectedIndex,
             RelicSelectedIndex = RelicSelectedIndex,
@@ -241,7 +241,7 @@ public class VoidFissuresPageViewModel : BaseViewModel
     {
         var sortedItems = Relics
             .Where(item => item.Hard == _isHard)
-            .OrderBy(item => item.Relic) 
+            .OrderBy(item => item.Relic)
             .ToList();
 
         SortedRelic.Clear();
